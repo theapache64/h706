@@ -1,17 +1,12 @@
 ## 1.Import and use SDK
-### 1.1	import module project fitpolosupport
-### 1.2	settings.gradle document，quote fitpolosupport project：
 
-	include ':app',':fitpolosupport'
+**1.1	Install dependency**
 
-### 1.3	Edit the build.gradle file of the main project:
+```groovy
+implementation 'com.theapache64.fitpolo-sdk:h706:1.0.0'
+```
 
-	dependencies {
-	    implementation fileTree(dir: 'libs', include: ['*.jar'])
-	    implementation project(path: ':fitpolosupport')
-	}
-
-### 1.4	Import sdk at project initialization
+1.2	Import sdk at project initialization
 
 	public class BaseApplication extends Application {
 	    @Override
@@ -29,7 +24,7 @@
 - Since the scanning device and the receiving command are asynchronous thread processing, it is recommended that all methods be called in `Service` to ensure that the app can receive data normally in the background;
 - The method can be called with `MokoSupport.getInstance()`;
 
-### 2.1	startScanDevice
+**2.1	startScanDevice**
 
 	@Description  scanning device
 	public void startScanDevice(final MokoScanDeviceCallback callback) {}
@@ -66,7 +61,7 @@
 
 - Do the processing work after scanning in `onStopScan()`;
 
-### 2.2	createBluetoothGatt
+**2.2	createBluetoothGatt**
 
 	@Description  pair device
 	public void connDevice(Context context, String address, MokoConnStateCallback mokoConnStateCallback) {}
@@ -95,14 +90,14 @@ Enter the parameters:
 
 - `onConnTimeout(int reConnCount)`  means connect failed，reConnCount  reconnect times；
 
-### 2.3	setOpenReConnect
+**2.3	setOpenReConnect**
 
 	@Description   setreconnect
     public void setOpenReConnect(boolean openReConnect){}
 
 `openReConnect` is true, then reconnect is opened. When the connection fails or the connection is disconnected, the system will execute the connection thread. If the Bluetooth is turned off, the reconnection will be performed in 5 seconds. If the reconnection fails, continue to reconnect;
 -  `openReConnect`is false，then turn it off and reconnect
-### 2.4	sendOrder
+**2.4	sendOrder**
 
 	@Description   send order
 	public void sendOrder(OrderTask... orderTasks){}
@@ -453,19 +448,19 @@ OrderTask：
 
 ​
 
-### 2.5	sendDirectOrder
+**2.5	sendDirectOrder**
 
 Send commands directly, this method can be used when the command does not need to answer, only supports the sending of a single command.
 
 	public void sendDirectOrder(OrderTask orderTask){}
 
-### 2.6	isBluetoothOpen
+**2.6	isBluetoothOpen**
 
 Judge if Bluetooth is turned on
 
 	public boolean isBluetoothOpen(){}
 
-### 2.7	isConnDevice
+**2.7	isConnDevice**
 
 judge if the bracelet is connected with app
 
@@ -473,7 +468,7 @@ judge if the bracelet is connected with app
 
  incominf parameter：address	bracelet mac address
 
-### 2.8	disConnectBle
+**2.8	disConnectBle**
 
 disconnect the bracelet
 
