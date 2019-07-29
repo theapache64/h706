@@ -6,7 +6,7 @@
 implementation 'com.theapache64.fitpolo-sdk:h706:1.0.0'
 ```
 
-1.2	Import sdk at project initialization
+**1.2	Import sdk at project initialization**
 
 	public class BaseApplication extends Application {
 	    @Override
